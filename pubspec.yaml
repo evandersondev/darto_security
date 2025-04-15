@@ -1,0 +1,9 @@
+name: darto_security
+description: Middlewares de segurança reais para o framework Darto.
+version: 0.0.1
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  darto: ^0.0.20
+  collection: ^1.18.0
