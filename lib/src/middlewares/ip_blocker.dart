@@ -1,4 +1,4 @@
-import 'package:darto/darto.dart';
+import 'package:darto_types/darto_types.dart';
 
 Middleware ipBlocker(List<String> blockedIps) {
   return (req, res, next) {

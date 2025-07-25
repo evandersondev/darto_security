@@ -1,4 +1,4 @@
-import 'package:darto/darto.dart';
+import 'package:darto_types/darto_types.dart';
 
 Middleware frameguard({String action = 'SAMEORIGIN'}) {
   return (req, res, next) {

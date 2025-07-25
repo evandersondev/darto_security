@@ -1,19 +1,19 @@
-import 'package:darto/darto.dart';
-import 'package:darto_security/src/middlewares/hide_powered_by.dart';
-import 'package:darto_security/src/middlewares/no_sniff.dart';
-import 'package:darto_security/src/middlewares/rate_limiter.dart';
-import 'package:darto_security/src/middlewares/security_headers.dart';
-import 'package:darto_security/src/middlewares/user_agent_blocker.dart';
-import 'package:darto_security/src/middlewares/xss_filter.dart';
+import 'package:darto_types/darto_types.dart';
 
 import 'middlewares/cors.dart';
 import 'middlewares/csp.dart';
 import 'middlewares/frameguard.dart';
+import 'middlewares/hide_powered_by.dart';
 import 'middlewares/hts.dart';
 import 'middlewares/ie_no_open.dart';
 import 'middlewares/ip_blocker.dart';
 import 'middlewares/no_cache.dart';
+import 'middlewares/no_sniff.dart';
 import 'middlewares/nonce_csp.dart';
+import 'middlewares/rate_limiter.dart';
+import 'middlewares/security_headers.dart';
+import 'middlewares/user_agent_blocker.dart';
+import 'middlewares/xss_filter.dart';
 
 Middleware dartoSecurity({
   bool blockUserAgents = true,
@@ -31,7 +31,6 @@ Middleware dartoSecurity({
   bool securityHeaders = true,
   bool xssProtection = true,
   bool nonceCsp = false,
-  // options for middlewares when needs
   List<String> blockedIps = const [],
   List<String> blockedAgents = const [],
   List<String> allowedOrigins = const ['*'],
@@ -96,7 +95,7 @@ Middleware dartoSecurity({
   }
 
   if (referrerPolicy) {
-    middlewares.add((req, res, next) {
+    middlewares.add((Request req, Response res, NextFunction next) {
       res.set('Referrer-Policy', 'no-referrer');
       next();
     });
@@ -114,14 +113,22 @@ Middleware dartoSecurity({
 }
 
 Middleware _combineMiddlewares(List<Middleware> middlewares) {
-  return (req, res, next) {
+  return (Request req, Response res, NextFunction next) {
     int index = 0;
-    void nextMiddleware() {
+    void nextMiddleware([Exception? error]) {
       if (index < middlewares.length) {
         final middleware = middlewares[index++];
-        middleware(req, res, nextMiddleware);
+        try {
+          middleware(req, res, nextMiddleware);
+        } catch (e) {
+          next(Exception('Middleware cast error: $e'));
+        }
       } else {
-        next();
+        if (error != null) {
+          next(error);
+        } else {
+          next();
+        }
       }
     }
 

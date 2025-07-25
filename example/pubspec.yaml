@@ -8,7 +8,8 @@ environment:
 
 # Add regular dependencies here.
 dependencies:
-  darto: ^0.0.20
+  darto:
+    path: ../../darto/
   darto_security:
     path: ../
 

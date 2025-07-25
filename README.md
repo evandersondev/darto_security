@@ -27,7 +27,7 @@ Add the package to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  darto_security: ^0.0.1
+  darto_security: ^0.0.2
 ```
 
 Then, run the following command:

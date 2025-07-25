@@ -1,8 +1,10 @@
 import 'dart:math';
-import 'package:darto/darto.dart';
+
+import 'package:darto_types/darto_types.dart';
 
 String _generateNonce([int length = 16]) {
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const chars =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   final rand = Random.secure();
   return List.generate(length, (_) => chars[rand.nextInt(chars.length)]).join();
 }

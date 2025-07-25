@@ -8,8 +8,8 @@ void main() {
     blockedAgents: ['BadBot'],
     blockedIps: ['123.123.123.123'],
     allowedOrigins: ['https://secure-app.com'],
-    allowedMethods: ['GET', 'POST'],
-    rateLimitMaxRequests: 60,
+    allowedMethods: ['POST'],
+    rateLimitMaxRequests: 10,
     rateLimitDuration: Duration(minutes: 1),
   ));
 

@@ -1,10 +1,11 @@
 name: darto_security
 description: The darto_security package provides a set of plug-and-play middlewares inspired by Helmet.js to improve the security of your Darto application. These middlewares help protect your API against common threats like XSS, CSRF, request spamming, and more.
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/evandersondev/darto_security
+
 environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
-  darto: ^0.0.20
   collection: ^1.18.0
+  darto_types: 0.0.1

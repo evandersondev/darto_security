@@ -1,4 +1,4 @@
-import 'package:darto/darto.dart';
+import 'package:darto_types/darto_types.dart';
 
 Middleware hidePoweredByFn([String? customValue]) {
   return (req, res, next) {

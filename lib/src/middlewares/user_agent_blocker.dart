@@ -1,4 +1,4 @@
-import 'package:darto/darto.dart';
+import 'package:darto_types/darto_types.dart';
 
 Middleware blockUserAgentsFn(List<String> blockedAgents) {
   return (req, res, next) {

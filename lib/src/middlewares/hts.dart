@@ -1,4 +1,4 @@
-import 'package:darto/darto.dart';
+import 'package:darto_types/darto_types.dart';
 
 Middleware hsts(
     {int maxAge = 15552000,
